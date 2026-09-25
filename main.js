@@ -19,7 +19,12 @@ function track(event) {
     localStorage.setItem('panda-date-events', JSON.stringify([...saved, entry]));
   } catch { /* never interrupt the invitation */ }
   if (webhook) {
-    fetch(webhook, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(entry), keepalive: true }).catch(() => {});
+    fetch(webhook, {
+  method: 'POST',
+  headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+  body: JSON.stringify(entry),
+  keepalive: true
+}).catch(() => {});
   }
 }
 
